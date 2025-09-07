@@ -262,16 +262,18 @@ const Blog = () => {
           )}
 
           {!loading && !error && posts.length > 0 && (
-            <BlogGrid
-              as={motion.div}
+            <motion.div 
+              style={{ maxWidth: '700px', margin: '0 auto', padding: '3rem 0' }}
               variants={containerVariants}
               initial="hidden"
               animate="visible"
             >
-              {posts.map((post) => (
+              {posts.map((post, index) => (
                 <BlogCard
                   key={post.id}
-                  variants={itemVariants}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <Link to={`/blog/${post.id}`} style={{ textDecoration: 'none' }}>
                     <BlogAuthor>
@@ -300,7 +302,7 @@ const Blog = () => {
                   </Link>
                 </BlogCard>
               ))}
-            </BlogGrid>
+            </motion.div>
           )}
         </Container>
       </BlogContainer>

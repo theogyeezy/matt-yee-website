@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import ErrorBoundary from './components/ErrorBoundary';
 import JarvisLoader from './components/JarvisLoader';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
@@ -52,9 +53,11 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <ErrorBoundary>
+      <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <AppContent />
+      </Router>
+    </ErrorBoundary>
   );
 }
 

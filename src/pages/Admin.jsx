@@ -233,7 +233,8 @@ const Admin = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     // Simple password check - in production, use proper authentication
-    if (password === 'MattYeeAdmin2024!') {
+    const adminPassword = import.meta.env.VITE_ADMIN_PASSWORD || 'MattYeeAdmin2024!';
+    if (password === adminPassword) {
       setIsAuthenticated(true);
       sessionStorage.setItem('adminAuth', 'true');
     } else {
