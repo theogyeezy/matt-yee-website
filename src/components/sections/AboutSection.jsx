@@ -311,10 +311,9 @@ const AboutSection = () => {
           >
             <TimelineYear>Past</TimelineYear>
             <TimelineContent>
-              <h3>Professional Baseball Career</h3>
-              <p><strong>New York Mets Bullpen Catcher</strong> - Worked directly with MLB pitchers and coaching staff. 
-              <strong>Cosmic Baseball Organization</strong> - Professional independent league player, participated in 
-              their inaugural tour. Learned discipline, teamwork, and high-pressure performance.</p>
+              <h3>Corporate</h3>
+              <p>Previous corporate experience in technology and business development, building foundational skills 
+              in leadership, project management, and strategic thinking that would later fuel entrepreneurial ventures.</p>
             </TimelineContent>
           </TimelineItem>
 
@@ -323,6 +322,22 @@ const AboutSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
+          >
+            <TimelineYear>Past</TimelineYear>
+            <TimelineContent>
+              <h3>Professional Baseball Career</h3>
+              <p><strong>New York Mets Bullpen Catcher</strong> - Worked directly with MLB & MILB pitchers and coaching staff 
+              during bullpen sessions and game preparation. Got introduced to baseball analytics, allowing me to infuse my two passions. 
+              <strong>Cosmic Baseball Organization</strong> - Professional independent league player, participated in their inaugural tour. 
+              Learned discipline, teamwork, and high-pressure performance while collaborating closely with players and staff at all levels of professional baseball.</p>
+            </TimelineContent>
+          </TimelineItem>
+
+          <TimelineItem
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
           >
             <TimelineYear>Future</TimelineYear>
             <TimelineContent>
