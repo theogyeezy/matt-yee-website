@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 
 // Import existing page components as sections
-import JarvisLoader from './JarvisLoader';
 import Navigation from './Navigation';
 
 // Section components (we'll convert existing pages to sections)
@@ -33,30 +32,7 @@ const ScrollContainer = styled.div`
 `;
 
 const SinglePageApp = () => {
-  const [loading, setLoading] = useState(true);
-  const [jarvisComplete, setJarvisComplete] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
-
-  useEffect(() => {
-    // Prevent double execution in React.StrictMode
-    let isMounted = true;
-    
-    const timer = setTimeout(() => {
-      if (isMounted) {
-        setJarvisComplete(true);
-        setTimeout(() => {
-          if (isMounted) {
-            setLoading(false);
-          }
-        }, 500);
-      }
-    }, 4000);
-
-    return () => {
-      isMounted = false;
-      clearTimeout(timer);
-    };
-  }, []);
 
   // Handle scroll-based section detection
   useEffect(() => {
@@ -94,10 +70,6 @@ const SinglePageApp = () => {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
-
-  if (loading) {
-    return <JarvisLoader isComplete={jarvisComplete} />;
-  }
 
   return (
     <>

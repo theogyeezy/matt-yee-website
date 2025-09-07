@@ -21,12 +21,24 @@ function AppContent() {
     if (skipJarvisRoutes) {
       setLoading(false);
     } else {
+      // Prevent double execution in React.StrictMode
+      let isMounted = true;
+      
       const timer = setTimeout(() => {
-        setJarvisComplete(true);
-        setTimeout(() => setLoading(false), 500);
+        if (isMounted) {
+          setJarvisComplete(true);
+          setTimeout(() => {
+            if (isMounted) {
+              setLoading(false);
+            }
+          }, 500);
+        }
       }, 4000);
 
-      return () => clearTimeout(timer);
+      return () => {
+        isMounted = false;
+        clearTimeout(timer);
+      };
     }
   }, [skipJarvisRoutes]);
 
