@@ -50,7 +50,14 @@ const SinglePageApp = () => {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['hero', 'about', 'consulting', 'blog', 'contact'];
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      
+      // Use different thresholds for mobile vs desktop
+      const isMobile = window.innerWidth <= 768;
+      const threshold = isMobile 
+        ? window.innerHeight * 0.7  // More scrolling required on mobile
+        : window.innerHeight * 0.5; // Less sensitive on desktop
+      
+      const scrollPosition = window.scrollY + threshold;
 
       for (const sectionId of sections) {
         const element = document.getElementById(sectionId);
@@ -65,7 +72,11 @@ const SinglePageApp = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll); // Recalculate on resize
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   const scrollToSection = (sectionId) => {
