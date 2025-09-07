@@ -12,6 +12,11 @@ Parameters:
     Description: Whether to create ACM certificate
     Default: 'true'
     AllowedValues: ['true', 'false']
+  
+  HostedZoneId:
+    Type: String
+    Description: Existing Route53 Hosted Zone ID for the domain
+    Default: 'Z00037831YZW35S8B8BPP'
 
 Conditions:
   HasDomain: !Not [!Equals [!Ref DomainName, '']]
@@ -64,16 +69,9 @@ Resources:
       ValidationMethod: DNS
       DomainValidationOptions:
         - DomainName: !Ref DomainName
-          HostedZoneId: !Ref HostedZone
+          HostedZoneId: !Ref HostedZoneId
         - DomainName: !Sub 'www.${DomainName}'
-          HostedZoneId: !Ref HostedZone
-
-  # Route53 Hosted Zone
-  HostedZone:
-    Type: AWS::Route53::HostedZone
-    Condition: HasDomain
-    Properties:
-      Name: !Ref DomainName
+          HostedZoneId: !Ref HostedZoneId
 
   # CloudFront Distribution
   CloudFrontDistribution:
@@ -347,7 +345,7 @@ Resources:
     Type: AWS::Route53::RecordSet
     Condition: HasDomain
     Properties:
-      HostedZoneId: !Ref HostedZone
+      HostedZoneId: !Ref HostedZoneId
       Name: !Ref DomainName
       Type: A
       AliasTarget:
@@ -358,7 +356,7 @@ Resources:
     Type: AWS::Route53::RecordSet
     Condition: HasDomain
     Properties:
-      HostedZoneId: !Ref HostedZone
+      HostedZoneId: !Ref HostedZoneId
       Name: !Sub 'www.${DomainName}'
       Type: A
       AliasTarget:
@@ -396,12 +394,12 @@ Outputs:
   HostedZoneId:
     Description: Route53 Hosted Zone ID
     Condition: HasDomain
-    Value: !Ref HostedZone
+    Value: !Ref HostedZoneId
   
   NameServers:
     Description: Route53 Name Servers (configure these in your domain registrar)
     Condition: HasDomain
-    Value: !Join [', ', !GetAtt HostedZone.NameServers]
+    Value: 'ns-1837.awsdns-37.co.uk, ns-225.awsdns-28.com, ns-1029.awsdns-00.org, ns-628.awsdns-14.net'
   
   SSLCertificateArn:
     Description: SSL Certificate ARN

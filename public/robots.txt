@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+
+Sitemap: https://themattyee.com/sitemap.xml
+
+# Matt Yee - AI/ML Director, Former NY Mets Bullpen Catcher
+# Professional baseball player, startup entrepreneur from Austin, Texas

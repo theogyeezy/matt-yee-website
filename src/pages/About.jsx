@@ -172,10 +172,12 @@ const About = () => {
   return (
     <>
       <Helmet>
-        <title>About Matt Yee - Engineer, Entrepreneur, Baseball Junkie</title>
-        <meta name="description" content="From professional baseball fields to leading-edge innovation labs, Matt Yee thrives at the intersection of technology, sports, and storytelling." />
-        <meta property="og:title" content="About Matt Yee" />
-        <meta property="og:description" content="Engineer. Entrepreneur. Baseball Junkie. Philanthropist. Building technology that pushes boundaries." />
+        <title>About Matt Yee - AI/ML Director, Former NY Mets Bullpen Catcher, Cosmic Baseball Player</title>
+        <meta name="description" content="Matt Yee: Director of AI/ML Innovation Solutions, former New York Mets bullpen catcher, professional baseball player with Cosmic Baseball Organization inaugural tour, startup entrepreneur from Austin, Texas." />
+        <meta name="keywords" content="Matt Yee, AI ML director, New York Mets bullpen catcher, Cosmic Baseball Organization, professional baseball player, startup entrepreneur, Austin Texas, innovation solutions" />
+        <meta property="og:title" content="About Matt Yee - AI/ML Leader & Former Pro Baseball Player" />
+        <meta property="og:description" content="From NY Mets bullpen catcher to AI/ML Innovation Director. Professional baseball player, startup entrepreneur, and technology leader." />
+        <meta property="og:url" content="https://themattyee.com/about" />
       </Helmet>
 
       <AboutContainer>
@@ -206,22 +208,24 @@ const About = () => {
               animate="visible"
             >
               <motion.p variants={itemVariants}>
-                I'm <strong>Matt Yee</strong>: Engineer. Entrepreneur. Baseball Junkie. Philanthropist(ish).
+                I'm <strong>Matt Yee</strong>: Engineer. Entrepreneur. Former Professional Baseball Player. Philanthropist(ish).
               </motion.p>
               
               <motion.p variants={itemVariants}>
-                By day, I lead AI/ML teams and build technology that pushes the boundaries of what's possible. 
-                By night (and often weekends), I'm still chasing baseballs, building startups, and dreaming up 
-                the next big thing. Somewhere in between, I find time to give back, whether it's through mentoring, 
-                supporting causes close to me, or fueling friends with BBQ.
+                I run an AI/ML org that works like a think tank — where wild ideas don't just sit on whiteboards, 
+                they turn into real tools. From Austin, Texas, I'm building tech that bends industries, breaks limits, 
+                and lets me play the not-so-billionaire version of Tony Stark. By night (and often weekends), I'm still 
+                chasing baseballs, building startups, and dreaming up the next big thing. Somewhere in between, I find 
+                time to give back, whether it's through mentoring, supporting causes close to me, or fueling friends with BBQ.
               </motion.p>
 
               <HighlightBox variants={itemVariants}>
                 <p>
-                  My journey has taken me from professional baseball fields to leading-edge innovation labs, 
-                  with a few startups and wild adventures along the way (yes, Everest is on the list). 
-                  I thrive at the intersection of technology, sports, and storytelling — blending the discipline 
-                  of engineering with the creativity of a ballplayer.
+                  My journey has taken me from professional baseball fields — including serving as a <strong>bullpen catcher 
+                  for the New York Mets</strong> and playing professional independent ball with the <strong>Cosmic Baseball 
+                  Organization's inaugural tour</strong> — to leading-edge innovation labs, with a few startups and wild 
+                  adventures along the way (yes, Everest is on the list). I thrive at the intersection of technology, 
+                  sports, and storytelling — blending the discipline of engineering with the creativity of a ballplayer.
                 </p>
               </HighlightBox>
 
@@ -306,8 +310,10 @@ const About = () => {
             >
               <TimelineYear>Present</TimelineYear>
               <TimelineContent>
-                <h3>AI/ML Leadership</h3>
-                <p>Leading teams in building cutting-edge AI solutions that transform industries</p>
+                <h3>Director of AI/ML – Innovation Solutions</h3>
+                <p>I lead AI and machine learning org but specifically acts like a think tank — basically, 
+                the part of the company where wild ideas turn into real tools. From Austin, Texas, I'm building 
+                tech that bends industries, breaks limits, and occasionally makes me feel like the not-so-billionaire Tony Stark</p>
               </TimelineContent>
             </TimelineItem>
 
@@ -332,8 +338,10 @@ const About = () => {
             >
               <TimelineYear>Past</TimelineYear>
               <TimelineContent>
-                <h3>Professional Baseball</h3>
-                <p>Competed at the highest levels, learning discipline, teamwork, and perseverance</p>
+                <h3>Professional Baseball Career</h3>
+                <p><strong>New York Mets Bullpen Catcher</strong> - Worked directly with MLB pitchers and coaching staff. 
+                <strong>Cosmic Baseball Organization</strong> - Professional independent league player, participated in 
+                their inaugural tour. Learned discipline, teamwork, and high-pressure performance.</p>
               </TimelineContent>
             </TimelineItem>
 

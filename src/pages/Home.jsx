@@ -200,12 +200,57 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>Matt Yee - Engineer. Entrepreneur. Athlete. Philanthropist</title>
-        <meta name="description" content="Matt Yee: Engineer, Entrepreneur, Baseball Junkie, and Philanthropist. Leading AI/ML teams, building startups, and living life at full throttle." />
-        <meta property="og:title" content="Matt Yee - Engineer. Entrepreneur. Athlete. Philanthropist" />
-        <meta property="og:description" content="Leading AI/ML teams and building technology that pushes the boundaries of what's possible." />
+        <title>Matt Yee - AI/ML Director, Former NY Mets Bullpen Catcher, Startup Entrepreneur</title>
+        <meta name="description" content="Matt Yee: Director of AI/ML Innovation Solutions, former New York Mets bullpen catcher, professional baseball player with Cosmic Baseball Organization, startup entrepreneur from Austin, Texas." />
+        <meta name="keywords" content="Matt Yee, AI ML director, artificial intelligence, New York Mets, bullpen catcher, Cosmic Baseball Organization, professional baseball player, startup entrepreneur, Austin Texas, innovation solutions, think tank" />
+        <meta property="og:title" content="Matt Yee - AI/ML Innovation Director & Former Pro Baseball Player" />
+        <meta property="og:description" content="From NY Mets bullpen catcher to AI/ML Innovation Director. Building technology that bends industries from Austin, Texas." />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://themattyee.com" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Matt Yee - AI/ML Director & Former NY Mets Bullpen Catcher" />
+        <meta name="twitter:description" content="AI/ML Innovation Director, former professional baseball player, startup entrepreneur from Austin, Texas." />
+        
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <link rel="canonical" href="https://themattyee.com" />
+        
+        <script type="application/ld+json">
+          {`{
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Matt Yee",
+            "jobTitle": "Director of AI/ML - Innovation Solutions",
+            "description": "AI/ML Director, former New York Mets bullpen catcher, professional baseball player with Cosmic Baseball Organization, startup entrepreneur",
+            "url": "https://themattyee.com",
+            "alumniOf": [
+              {
+                "@type": "Organization",
+                "name": "New York Mets",
+                "description": "Major League Baseball Organization"
+              },
+              {
+                "@type": "Organization", 
+                "name": "Cosmic Baseball Organization",
+                "description": "Professional Independent Baseball League"
+              }
+            ],
+            "knowsAbout": [
+              "Artificial Intelligence",
+              "Machine Learning", 
+              "Startup Strategy",
+              "Innovation Leadership",
+              "Professional Baseball",
+              "Think Tank Operations"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Austin",
+              "addressRegion": "Texas",
+              "addressCountry": "US"
+            }
+          }`}
+        </script>
       </Helmet>
 
       <HeroSection>

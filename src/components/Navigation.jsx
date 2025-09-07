@@ -129,6 +129,11 @@ const Navigation = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink to="/consulting" className={isActive('/consulting') ? 'active' : ''}>
+              Consulting
+            </NavLink>
+          </li>
+          <li>
             <NavLink to="/blog" className={isActive('/blog') ? 'active' : ''}>
               Blog
             </NavLink>
@@ -154,6 +159,9 @@ const Navigation = () => {
           </NavLink>
           <NavLink to="/about" onClick={() => setMobileMenuOpen(false)}>
             About
+          </NavLink>
+          <NavLink to="/consulting" onClick={() => setMobileMenuOpen(false)}>
+            Consulting
           </NavLink>
           <NavLink to="/blog" onClick={() => setMobileMenuOpen(false)}>
             Blog
