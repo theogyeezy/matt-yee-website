@@ -34,8 +34,18 @@ jobs:
         
     - name: Deploy to S3
       run: |
-        aws s3 sync dist/ s3://themattyee.com-website --delete --cache-control max-age=31536000,public
-        aws s3 cp s3://themattyee.com-website/index.html s3://themattyee.com-website/index.html --metadata-directive REPLACE --cache-control max-age=0,no-cache,no-store,must-revalidate
+        # Upload assets with long cache and correct content types
+        aws s3 sync dist/assets/ s3://themattyee.com-website/assets/ --delete --cache-control max-age=31536000,public
+        
+        # Set correct content types for assets
+        aws s3 cp s3://themattyee.com-website/assets/ s3://themattyee.com-website/assets/ --recursive --metadata-directive REPLACE --cache-control max-age=31536000,public --content-type-by-extension
+        
+        # Upload HTML with correct content type and no cache
+        aws s3 cp dist/index.html s3://themattyee.com-website/index.html --content-type "text/html" --cache-control max-age=0,no-cache,no-store,must-revalidate
+        
+        # Upload other files with correct content types
+        aws s3 cp dist/robots.txt s3://themattyee.com-website/robots.txt --content-type "text/plain" --cache-control max-age=3600,public
+        aws s3 cp dist/sitemap.xml s3://themattyee.com-website/sitemap.xml --content-type "application/xml" --cache-control max-age=3600,public
         
     - name: Invalidate CloudFront
       run: |
