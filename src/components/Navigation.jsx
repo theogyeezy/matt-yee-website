@@ -101,7 +101,7 @@ const MobileMenu = styled(motion.div)`
   gap: 1.5rem;
 `;
 
-const Navigation = ({ activeSection, onSectionClick }) => {
+const Navigation = ({ onSectionClick }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -113,8 +113,6 @@ const Navigation = ({ activeSection, onSectionClick }) => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const isActive = (section) => activeSection === section;
 
   const handleNavClick = (section) => {
     if (onSectionClick) {
@@ -129,27 +127,27 @@ const Navigation = ({ activeSection, onSectionClick }) => {
         <Logo onClick={() => handleNavClick('hero')}>MATT YEE</Logo>
         <NavMenu>
           <li>
-            <NavLink onClick={() => handleNavClick('hero')} className={isActive('hero') ? 'active' : ''}>
+            <NavLink onClick={() => handleNavClick('hero')}>
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink onClick={() => handleNavClick('about')} className={isActive('about') ? 'active' : ''}>
+            <NavLink onClick={() => handleNavClick('about')}>
               About
             </NavLink>
           </li>
           <li>
-            <NavLink onClick={() => handleNavClick('consulting')} className={isActive('consulting') ? 'active' : ''}>
+            <NavLink onClick={() => handleNavClick('consulting')}>
               Consulting
             </NavLink>
           </li>
           <li>
-            <NavLink onClick={() => handleNavClick('blog')} className={isActive('blog') ? 'active' : ''}>
+            <NavLink onClick={() => handleNavClick('blog')}>
               Blog
             </NavLink>
           </li>
           <li>
-            <NavLink onClick={() => handleNavClick('contact')} className={isActive('contact') ? 'active' : ''}>
+            <NavLink onClick={() => handleNavClick('contact')}>
               Contact
             </NavLink>
           </li>

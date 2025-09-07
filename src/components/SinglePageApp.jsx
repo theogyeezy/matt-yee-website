@@ -22,11 +22,9 @@ const AppContainer = styled.div`
 const Section = styled(motion.section)`
   min-height: 100vh;
   position: relative;
-  scroll-snap-align: start;
 `;
 
 const ScrollContainer = styled.div`
-  scroll-snap-type: y mandatory;
   overflow-y: auto;
   height: 100vh;
 `;
@@ -34,35 +32,7 @@ const ScrollContainer = styled.div`
 const SinglePageApp = () => {
   const [activeSection, setActiveSection] = useState('hero');
 
-  // Handle scroll-based section detection
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['hero', 'about', 'consulting', 'blog', 'contact'];
-      
-      // Use higher threshold for less snappy section switching
-      const threshold = window.innerHeight * 0.88; // 88% scrolled before switching
-      
-      const scrollPosition = window.scrollY + threshold;
-
-      for (const sectionId of sections) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(sectionId);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleScroll); // Recalculate on resize
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-    };
-  }, []);
+  // Remove automatic scroll detection - let users scroll freely
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -129,7 +99,7 @@ const SinglePageApp = () => {
       </Helmet>
 
       <AppContainer>
-        <Navigation activeSection={activeSection} onSectionClick={scrollToSection} />
+        <Navigation onSectionClick={scrollToSection} />
         
         <ScrollContainer>
           <Section id="hero">
