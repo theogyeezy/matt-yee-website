@@ -311,9 +311,10 @@ const About = () => {
               <TimelineYear>Present</TimelineYear>
               <TimelineContent>
                 <h3>Director of AI/ML – Innovation Solutions</h3>
-                <p>I lead AI and machine learning org but specifically acts like a think tank — basically, 
-                the part of the company where wild ideas turn into real tools. From Austin, Texas, I'm building 
-                tech that bends industries, breaks limits, and occasionally makes me feel like the not-so-billionaire Tony Stark</p>
+                <p>I lead an AI/ML org that runs like a think tank — where bold ideas don't just live on whiteboards, 
+                they become real tools. From Austin, Texas, I'm pushing the limits of applied research in agentic AI 
+                and machine learning, building tech that bends industries, breaks barriers, and lets me channel my 
+                inner Tony Stark (minus the billionaire status).</p>
               </TimelineContent>
             </TimelineItem>
 

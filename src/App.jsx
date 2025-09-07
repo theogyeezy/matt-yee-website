@@ -2,13 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import ErrorBoundary from './components/ErrorBoundary';
 import JarvisLoader from './components/JarvisLoader';
-import Navigation from './components/Navigation';
-import Home from './pages/Home';
-import About from './pages/About';
-import Consulting from './pages/Consulting';
+import SinglePageApp from './components/SinglePageApp';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
-import Contact from './pages/Contact';
 import Admin from './pages/Admin';
 
 function AppContent() {
@@ -16,11 +12,13 @@ function AppContent() {
   const [jarvisComplete, setJarvisComplete] = useState(false);
   const location = useLocation();
   
-  // Don't show Jarvis loader for admin route
-  const isAdminRoute = location.pathname === '/admin';
+  // Don't show Jarvis loader for admin route or blog routes
+  const skipJarvisRoutes = ['/admin', '/blog'].some(route => 
+    location.pathname === route || location.pathname.startsWith(route + '/')
+  );
 
   useEffect(() => {
-    if (isAdminRoute) {
+    if (skipJarvisRoutes) {
       setLoading(false);
     } else {
       const timer = setTimeout(() => {
@@ -30,24 +28,18 @@ function AppContent() {
 
       return () => clearTimeout(timer);
     }
-  }, [isAdminRoute]);
+  }, [skipJarvisRoutes]);
 
   return (
     <>
-      {!isAdminRoute && loading && <JarvisLoader isComplete={jarvisComplete} />}
+      {!skipJarvisRoutes && loading && <JarvisLoader isComplete={jarvisComplete} />}
       {!loading && (
-        <>
-          <Navigation />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/consulting" element={<Consulting />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:id" element={<BlogPost />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/admin" element={<Admin />} />
-          </Routes>
-        </>
+        <Routes>
+          <Route path="/" element={<SinglePageApp />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
+          <Route path="/admin" element={<Admin />} />
+        </Routes>
       )}
     </>
   );

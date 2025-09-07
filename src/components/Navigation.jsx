@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -23,7 +22,7 @@ const NavContainer = styled.div`
   align-items: center;
 `;
 
-const Logo = styled(Link)`
+const Logo = styled.div`
   font-size: 1.5rem;
   font-weight: 700;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -31,6 +30,7 @@ const Logo = styled(Link)`
   -webkit-text-fill-color: transparent;
   text-decoration: none;
   font-family: 'Orbitron', monospace;
+  cursor: pointer;
 `;
 
 const NavMenu = styled.ul`
@@ -45,12 +45,16 @@ const NavMenu = styled.ul`
   }
 `;
 
-const NavLink = styled(Link)`
+const NavLink = styled.button`
   color: #ffffff;
-  text-decoration: none;
+  background: none;
+  border: none;
   font-weight: 500;
   position: relative;
   transition: color 0.3s ease;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: inherit;
 
   &:hover {
     color: #667eea;
@@ -97,10 +101,9 @@ const MobileMenu = styled(motion.div)`
   gap: 1.5rem;
 `;
 
-const Navigation = () => {
+const Navigation = ({ activeSection, onSectionClick }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -111,35 +114,42 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (section) => activeSection === section;
+
+  const handleNavClick = (section) => {
+    if (onSectionClick) {
+      onSectionClick(section);
+    }
+    setMobileMenuOpen(false);
+  };
 
   return (
     <Nav scrolled={scrolled}>
       <NavContainer>
-        <Logo to="/">MATT YEE</Logo>
+        <Logo onClick={() => handleNavClick('hero')}>MATT YEE</Logo>
         <NavMenu>
           <li>
-            <NavLink to="/" className={isActive('/') ? 'active' : ''}>
+            <NavLink onClick={() => handleNavClick('hero')} className={isActive('hero') ? 'active' : ''}>
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/about" className={isActive('/about') ? 'active' : ''}>
+            <NavLink onClick={() => handleNavClick('about')} className={isActive('about') ? 'active' : ''}>
               About
             </NavLink>
           </li>
           <li>
-            <NavLink to="/consulting" className={isActive('/consulting') ? 'active' : ''}>
+            <NavLink onClick={() => handleNavClick('consulting')} className={isActive('consulting') ? 'active' : ''}>
               Consulting
             </NavLink>
           </li>
           <li>
-            <NavLink to="/blog" className={isActive('/blog') ? 'active' : ''}>
+            <NavLink onClick={() => handleNavClick('blog')} className={isActive('blog') ? 'active' : ''}>
               Blog
             </NavLink>
           </li>
           <li>
-            <NavLink to="/contact" className={isActive('/contact') ? 'active' : ''}>
+            <NavLink onClick={() => handleNavClick('contact')} className={isActive('contact') ? 'active' : ''}>
               Contact
             </NavLink>
           </li>
@@ -154,19 +164,19 @@ const Navigation = () => {
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: 300, opacity: 0 }}
         >
-          <NavLink to="/" onClick={() => setMobileMenuOpen(false)}>
+          <NavLink onClick={() => handleNavClick('hero')}>
             Home
           </NavLink>
-          <NavLink to="/about" onClick={() => setMobileMenuOpen(false)}>
+          <NavLink onClick={() => handleNavClick('about')}>
             About
           </NavLink>
-          <NavLink to="/consulting" onClick={() => setMobileMenuOpen(false)}>
+          <NavLink onClick={() => handleNavClick('consulting')}>
             Consulting
           </NavLink>
-          <NavLink to="/blog" onClick={() => setMobileMenuOpen(false)}>
+          <NavLink onClick={() => handleNavClick('blog')}>
             Blog
           </NavLink>
-          <NavLink to="/contact" onClick={() => setMobileMenuOpen(false)}>
+          <NavLink onClick={() => handleNavClick('contact')}>
             Contact
           </NavLink>
         </MobileMenu>
