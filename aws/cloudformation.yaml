@@ -4,18 +4,27 @@ Description: 'Infrastructure for Matt Yee personal website with blog'
 Parameters:
   DomainName:
     Type: String
-    Description: Domain name for the website (optional)
-    Default: ''
+    Description: Domain name for the website
+    Default: 'themattyee.com'
+  
+  CreateCertificate:
+    Type: String
+    Description: Whether to create ACM certificate
+    Default: 'true'
+    AllowedValues: ['true', 'false']
 
 Conditions:
   HasDomain: !Not [!Equals [!Ref DomainName, '']]
+  ShouldCreateCertificate: !And
+    - !Condition HasDomain
+    - !Equals [!Ref CreateCertificate, 'true']
 
 Resources:
   # S3 Bucket for hosting static website
   WebsiteBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: matt-yee-website
+      BucketName: !Sub '${DomainName}-website'
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: index.html
@@ -43,6 +52,28 @@ Resources:
             Principal: '*'
             Action: s3:GetObject
             Resource: !Sub '${WebsiteBucket.Arn}/*'
+
+  # SSL Certificate (must be in us-east-1 for CloudFront)
+  SSLCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Condition: ShouldCreateCertificate
+    Properties:
+      DomainName: !Ref DomainName
+      SubjectAlternativeNames:
+        - !Sub 'www.${DomainName}'
+      ValidationMethod: DNS
+      DomainValidationOptions:
+        - DomainName: !Ref DomainName
+          HostedZoneId: !Ref HostedZone
+        - DomainName: !Sub 'www.${DomainName}'
+          HostedZoneId: !Ref HostedZone
+
+  # Route53 Hosted Zone
+  HostedZone:
+    Type: AWS::Route53::HostedZone
+    Condition: HasDomain
+    Properties:
+      Name: !Ref DomainName
 
   # CloudFront Distribution
   CloudFrontDistribution:
@@ -79,8 +110,17 @@ Resources:
             Cookies:
               Forward: none
         PriceClass: PriceClass_100
-        ViewerCertificate:
-          CloudFrontDefaultCertificate: true
+        Aliases: !If
+          - HasDomain
+          - - !Ref DomainName
+            - !Sub 'www.${DomainName}'
+          - !Ref AWS::NoValue
+        ViewerCertificate: !If
+          - ShouldCreateCertificate
+          - AcmCertificateArn: !Ref SSLCertificate
+            SslSupportMethod: sni-only
+            MinimumProtocolVersion: TLSv1.2_2021
+          - CloudFrontDefaultCertificate: true
 
   # DynamoDB Table for Blog Posts
   BlogPostsTable:
@@ -302,19 +342,68 @@ Resources:
       RestApiId: !Ref BlogApi
       StageName: prod
 
+  # Route53 DNS Records
+  DNSRecord:
+    Type: AWS::Route53::RecordSet
+    Condition: HasDomain
+    Properties:
+      HostedZoneId: !Ref HostedZone
+      Name: !Ref DomainName
+      Type: A
+      AliasTarget:
+        DNSName: !GetAtt CloudFrontDistribution.DomainName
+        HostedZoneId: Z2FDTNDATAQYW2  # CloudFront hosted zone ID (global)
+
+  WWWDNSRecord:
+    Type: AWS::Route53::RecordSet
+    Condition: HasDomain
+    Properties:
+      HostedZoneId: !Ref HostedZone
+      Name: !Sub 'www.${DomainName}'
+      Type: A
+      AliasTarget:
+        DNSName: !GetAtt CloudFrontDistribution.DomainName
+        HostedZoneId: Z2FDTNDATAQYW2  # CloudFront hosted zone ID (global)
+
 Outputs:
   WebsiteURL:
     Description: Website URL
-    Value: !GetAtt CloudFrontDistribution.DomainName
+    Value: !If
+      - HasDomain
+      - !Sub 'https://${DomainName}'
+      - !Sub 'https://${CloudFrontDistribution.DomainName}'
+  
+  CloudFrontURL:
+    Description: CloudFront Distribution URL
+    Value: !Sub 'https://${CloudFrontDistribution.DomainName}'
+  
   S3BucketName:
     Description: S3 Bucket Name
     Value: !Ref WebsiteBucket
+  
   CloudFrontDistributionId:
     Description: CloudFront Distribution ID
     Value: !Ref CloudFrontDistribution
+  
   BlogApiUrl:
     Description: Blog API URL
     Value: !Sub 'https://${BlogApi}.execute-api.${AWS::Region}.amazonaws.com/prod'
+  
   DynamoDBTableName:
     Description: DynamoDB Table Name
     Value: !Ref BlogPostsTable
+  
+  HostedZoneId:
+    Description: Route53 Hosted Zone ID
+    Condition: HasDomain
+    Value: !Ref HostedZone
+  
+  NameServers:
+    Description: Route53 Name Servers (configure these in your domain registrar)
+    Condition: HasDomain
+    Value: !Join [', ', !GetAtt HostedZone.NameServers]
+  
+  SSLCertificateArn:
+    Description: SSL Certificate ARN
+    Condition: ShouldCreateCertificate
+    Value: !Ref SSLCertificate

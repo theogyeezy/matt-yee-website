@@ -8,9 +8,11 @@ set -e
 echo "🚀 Starting deployment process..."
 
 # Configuration
-S3_BUCKET="matt-yee-website"
-CLOUDFRONT_DISTRIBUTION_ID=""  # Will be set after CloudFront is created
+DOMAIN_NAME="themattyee.com"
+S3_BUCKET="${DOMAIN_NAME}-website"
+CLOUDFRONT_DISTRIBUTION_ID=""  # Will be retrieved from CloudFormation stack
 AWS_REGION="us-east-1"
+STACK_NAME="matt-yee-website"
 
 # Build the application
 echo "📦 Building the application..."
@@ -41,13 +43,22 @@ aws s3 cp dist/ s3://$S3_BUCKET/ \
     --include "*.json" \
     --cache-control "no-cache, no-store, must-revalidate"
 
-# Invalidate CloudFront cache (if distribution ID is set)
+# Get CloudFront Distribution ID from CloudFormation stack
+echo "🔍 Getting CloudFront Distribution ID..."
+CLOUDFRONT_DISTRIBUTION_ID=$(aws cloudformation describe-stacks \
+    --stack-name $STACK_NAME \
+    --query 'Stacks[0].Outputs[?OutputKey==`CloudFrontDistributionId`].OutputValue' \
+    --output text \
+    --region $AWS_REGION)
+
 if [ ! -z "$CLOUDFRONT_DISTRIBUTION_ID" ]; then
     echo "🔄 Invalidating CloudFront cache..."
     aws cloudfront create-invalidation \
         --distribution-id $CLOUDFRONT_DISTRIBUTION_ID \
-        --paths "/*"
+        --paths "/*" \
+        --region $AWS_REGION
 fi
 
 echo "✅ Deployment complete!"
-echo "🌐 Website URL: https://matt-yee-website.s3-website-$AWS_REGION.amazonaws.com"
+echo "🌐 Website URL: https://$DOMAIN_NAME"
+echo "📄 CloudFront URL: $(aws cloudformation describe-stacks --stack-name $STACK_NAME --query 'Stacks[0].Outputs[?OutputKey==`CloudFrontURL`].OutputValue' --output text --region $AWS_REGION)"
