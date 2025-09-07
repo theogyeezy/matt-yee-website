@@ -222,10 +222,10 @@ const About = () => {
               <HighlightBox variants={itemVariants}>
                 <p>
                   My journey has taken me from professional baseball fields — including serving as a <strong>bullpen catcher 
-                  for the New York Mets</strong> and playing professional independent ball with the <strong>Cosmic Baseball 
+                  for the New York Mets Organization</strong> and playing professional independent ball with the <strong>Cosmic Baseball 
                   Organization's inaugural tour</strong> — to leading-edge innovation labs, with a few startups and wild 
-                  adventures along the way (yes, Everest is on the list). I thrive at the intersection of technology, 
-                  sports, and storytelling — blending the discipline of engineering with the creativity of a ballplayer.
+                  adventures along the way (yes, Everest is on the list). I've learned to thrive at the intersection of technology 
+                  and sports — blending the precision of engineering with the discipline and fearlessness of a ballplayer.
                 </p>
               </HighlightBox>
 
