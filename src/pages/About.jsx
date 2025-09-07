@@ -208,7 +208,7 @@ const About = () => {
               animate="visible"
             >
               <motion.p variants={itemVariants}>
-                I'm <strong>Matt Yee</strong>: Engineer. Entrepreneur. Former Professional Baseball Player. Philanthropist(ish).
+                I'm <strong>Matt Yee</strong>: Engineer. Entrepreneur. Athlete. Philanthropist(ish).
               </motion.p>
               
               <motion.p variants={itemVariants}>

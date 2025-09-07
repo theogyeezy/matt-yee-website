@@ -176,7 +176,7 @@ const HeroSection = ({ onSectionClick }) => {
         </Title>
         
         <Subtitle variants={itemVariants}>
-          Engineer. Entrepreneur. Former Professional Baseball Player. Philanthropist.
+          Engineer. Entrepreneur. Athlete. Philanthropist. (Not Tony Stark)
         </Subtitle>
         
         <Description variants={itemVariants}>
