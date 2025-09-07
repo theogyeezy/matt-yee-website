@@ -48,44 +48,6 @@ const Description = styled(motion.p)`
   margin-right: auto;
 `;
 
-const ButtonContainer = styled(motion.div)`
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-`;
-
-const Button = styled(motion.button)`
-  padding: 1rem 2rem;
-  border-radius: 50px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  display: inline-block;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  
-  &.primary {
-    background: #ffffff;
-    color: #764ba2;
-    
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-  }
-  
-  &.secondary {
-    background: transparent;
-    color: #ffffff;
-    border: 2px solid #ffffff;
-    
-    &:hover {
-      background: #ffffff;
-      color: #764ba2;
-    }
-  }
-`;
 
 const FloatingParticle = styled.div`
   position: absolute;
@@ -128,18 +90,35 @@ const ScrollIndicator = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
+  padding: 1rem;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
   
   &:hover {
     color: #ffffff;
+    background: rgba(102, 126, 234, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateX(-50%) translateY(-5px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
   }
 `;
 
+const ScrollText = styled.div`
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-family: 'Orbitron', monospace;
+`;
+
 const ScrollArrow = styled.div`
-  width: 24px;
-  height: 24px;
-  border: 2px solid currentColor;
+  width: 28px;
+  height: 28px;
+  border: 3px solid currentColor;
   border-top: none;
   border-left: none;
   transform: rotate(45deg);
@@ -147,8 +126,8 @@ const ScrollArrow = styled.div`
   
   @keyframes bounce {
     0%, 20%, 50%, 80%, 100% { transform: translateY(0) rotate(45deg); }
-    40% { transform: translateY(-10px) rotate(45deg); }
-    60% { transform: translateY(-5px) rotate(45deg); }
+    40% { transform: translateY(-15px) rotate(45deg); }
+    60% { transform: translateY(-8px) rotate(45deg); }
   }
 `;
 
@@ -181,18 +160,6 @@ const HeroSection = ({ onSectionClick }) => {
     }
   };
 
-  const handleConsultingClick = () => {
-    if (onSectionClick) {
-      onSectionClick('consulting');
-    }
-  };
-
-  const handleContactClick = () => {
-    if (onSectionClick) {
-      onSectionClick('contact');
-    }
-  };
-
   return (
     <HeroContainer>
       <FloatingParticle />
@@ -216,25 +183,6 @@ const HeroSection = ({ onSectionClick }) => {
           Director of AI/ML Innovation Solutions, pushing the limits of applied research in agentic AI 
           and machine learning. From Austin, Texas, building tech that bends industries and breaks barriers.
         </Description>
-        
-        <ButtonContainer variants={itemVariants}>
-          <Button 
-            className="primary"
-            onClick={handleConsultingClick}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Explore Consulting
-          </Button>
-          <Button 
-            className="secondary"
-            onClick={handleContactClick}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Get In Touch
-          </Button>
-        </ButtonContainer>
       </HeroContent>
 
       <ScrollIndicator
@@ -242,8 +190,9 @@ const HeroSection = ({ onSectionClick }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2, duration: 0.8 }}
+        whileHover={{ scale: 1.1 }}
       >
-        <div style={{ fontSize: '0.9rem', marginBottom: '0.5rem' }}>Scroll Down</div>
+        <ScrollText>Explore</ScrollText>
         <ScrollArrow />
       </ScrollIndicator>
     </HeroContainer>
