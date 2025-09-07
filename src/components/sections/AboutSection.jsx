@@ -315,7 +315,7 @@ const AboutSection = () => {
           >
             <TimelineYear>Past</TimelineYear>
             <TimelineContent>
-              <h3>Corporate</h3>
+              <h3>Engineering Career</h3>
               <p>My career has taken me from aerospace engineering to advanced R&D labs and internal innovation think tanks. I've contributed to projects that reached beyond our planet, worked on bold "moonshot" ideas designed to reshape the future, and helped drive research in next-generation connectivity. Along the way, I've also led engineering teams focused on cloud infrastructure, artificial intelligence, and machine learning — pushing the boundaries of what technology can deliver at scale.</p>
             </TimelineContent>
           </TimelineItem>
