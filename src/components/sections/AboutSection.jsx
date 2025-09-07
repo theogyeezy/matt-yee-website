@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { FaBrain, FaLightbulb, FaBaseballBall, FaBullseye } from 'react-icons/fa';
 
 const AboutContainer = styled.div`
   min-height: 100vh;
@@ -80,6 +81,9 @@ const SkillCard = styled(motion.div)`
 const SkillIcon = styled.div`
   font-size: 2rem;
   margin-bottom: 0.5rem;
+  color: #667eea;
+  display: flex;
+  justify-content: center;
 `;
 
 const SkillTitle = styled.h3`
@@ -216,7 +220,7 @@ const AboutSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <SkillIcon>🧠</SkillIcon>
+            <SkillIcon><FaBrain /></SkillIcon>
             <SkillTitle>AI/ML Innovation</SkillTitle>
             <SkillDescription>
               Leading teams in cutting-edge machine learning and artificial intelligence
@@ -230,7 +234,7 @@ const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            <SkillIcon>💡</SkillIcon>
+            <SkillIcon><FaLightbulb /></SkillIcon>
             <SkillTitle>Startup Strategy</SkillTitle>
             <SkillDescription>
               Building and scaling innovative companies from concept to reality
@@ -244,7 +248,7 @@ const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <SkillIcon>⚾</SkillIcon>
+            <SkillIcon><FaBaseballBall /></SkillIcon>
             <SkillTitle>Athletic Discipline</SkillTitle>
             <SkillDescription>
               Bringing the focus and teamwork of professional sports to tech
@@ -258,7 +262,7 @@ const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
           >
-            <SkillIcon>🎯</SkillIcon>
+            <SkillIcon><FaBullseye /></SkillIcon>
             <SkillTitle>Leadership</SkillTitle>
             <SkillDescription>
               Inspiring teams to achieve beyond their perceived limitations
@@ -312,8 +316,7 @@ const AboutSection = () => {
             <TimelineYear>Past</TimelineYear>
             <TimelineContent>
               <h3>Corporate</h3>
-              <p>Previous corporate experience in technology and business development, building foundational skills 
-              in leadership, project management, and strategic thinking that would later fuel entrepreneurial ventures.</p>
+              <p>My career has taken me from aerospace engineering to advanced R&D labs and internal innovation think tanks. I've contributed to projects that reached beyond our planet, worked on bold "moonshot" ideas designed to reshape the future, and helped drive research in next-generation connectivity. Along the way, I've also led engineering teams focused on cloud infrastructure, artificial intelligence, and machine learning — pushing the boundaries of what technology can deliver at scale.</p>
             </TimelineContent>
           </TimelineItem>
 
@@ -326,10 +329,11 @@ const AboutSection = () => {
             <TimelineYear>Past</TimelineYear>
             <TimelineContent>
               <h3>Professional Baseball Career</h3>
-              <p><strong>New York Mets Bullpen Catcher</strong> - Worked directly with MLB & MILB pitchers and coaching staff 
-              during bullpen sessions and game preparation. Got introduced to baseball analytics, allowing me to infuse my two passions. 
-              <strong>Cosmic Baseball Organization</strong> - Professional independent league player, participated in their inaugural tour. 
-              Learned discipline, teamwork, and high-pressure performance while collaborating closely with players and staff at all levels of professional baseball.</p>
+              <p><strong>New York Mets Organization | Bullpen Catcher</strong></p>
+              <p>Worked directly with MLB & MILB pitchers and coaching staff during bullpen sessions and game preparation. Got introduced to baseball analytics, allowing me to infuse my two passions.</p>
+              
+              <p><strong>Cosmic Baseball Organization | Professional Baseball Player</strong></p>
+              <p>Professional independent league player, participated in their inaugural tour. Learned discipline, teamwork, and high-pressure performance while collaborating closely with players and staff at all levels of professional baseball.</p>
             </TimelineContent>
           </TimelineItem>
 
