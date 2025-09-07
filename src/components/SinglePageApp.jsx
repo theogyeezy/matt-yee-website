@@ -38,12 +38,24 @@ const SinglePageApp = () => {
   const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
+    // Prevent double execution in React.StrictMode
+    let isMounted = true;
+    
     const timer = setTimeout(() => {
-      setJarvisComplete(true);
-      setTimeout(() => setLoading(false), 500);
+      if (isMounted) {
+        setJarvisComplete(true);
+        setTimeout(() => {
+          if (isMounted) {
+            setLoading(false);
+          }
+        }, 500);
+      }
     }, 4000);
 
-    return () => clearTimeout(timer);
+    return () => {
+      isMounted = false;
+      clearTimeout(timer);
+    };
   }, []);
 
   // Handle scroll-based section detection
@@ -51,11 +63,8 @@ const SinglePageApp = () => {
     const handleScroll = () => {
       const sections = ['hero', 'about', 'consulting', 'blog', 'contact'];
       
-      // Use different thresholds for mobile vs desktop
-      const isMobile = window.innerWidth <= 768;
-      const threshold = isMobile 
-        ? window.innerHeight * 0.7  // More scrolling required on mobile
-        : window.innerHeight * 0.5; // Less sensitive on desktop
+      // Use higher threshold for less snappy section switching
+      const threshold = window.innerHeight * 0.88; // 88% scrolled before switching
       
       const scrollPosition = window.scrollY + threshold;
 
