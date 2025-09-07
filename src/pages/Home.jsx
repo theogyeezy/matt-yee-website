@@ -83,12 +83,37 @@ const Button = styled(Link)`
   }
 `;
 
-const FloatingParticle = styled(motion.div)`
+const FloatingParticle = styled.div`
   position: absolute;
   width: 4px;
   height: 4px;
   background: rgba(255, 255, 255, 0.5);
   border-radius: 50%;
+  animation: float 10s infinite ease-in-out;
+  
+  &:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+  
+  &:nth-child(2) {
+    top: 60%;
+    left: 80%;
+    animation-delay: 3s;
+  }
+  
+  &:nth-child(3) {
+    top: 80%;
+    left: 30%;
+    animation-delay: 6s;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    33% { transform: translateY(-30px) translateX(30px); }
+    66% { transform: translateY(30px) translateX(-30px); }
+  }
 `;
 
 const FeaturesSection = styled.section`
@@ -208,24 +233,9 @@ const Home = () => {
           </motion.div>
         </HeroContent>
 
-        {[...Array(5)].map((_, i) => (
-          <FloatingParticle
-            key={i}
-            initial={{ 
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-            }}
-            animate={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Infinity,
-              repeatType: 'reverse',
-            }}
-          />
-        ))}
+        <FloatingParticle />
+        <FloatingParticle />
+        <FloatingParticle />
       </HeroSection>
 
       <FeaturesSection>

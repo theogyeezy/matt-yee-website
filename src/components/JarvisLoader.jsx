@@ -31,7 +31,7 @@ const ArcReactor = styled.div`
   height: 200px;
 `;
 
-const Core = styled(motion.div)`
+const Core = styled.div`
   position: absolute;
   width: 60px;
   height: 60px;
@@ -41,9 +41,19 @@ const Core = styled(motion.div)`
   left: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 60px #00d4ff, inset 0 0 20px #00d4ff;
+  animation: glow 1.5s ease-in-out infinite alternate;
+  
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 60px #00d4ff, inset 0 0 20px #00d4ff;
+    }
+    to {
+      box-shadow: 0 0 80px #00d4ff, inset 0 0 30px #00d4ff;
+    }
+  }
 `;
 
-const Ring = styled(motion.div)`
+const Ring = styled.div`
   position: absolute;
   border: 2px solid ${props => props.color || '#00d4ff'};
   border-radius: 50%;
@@ -53,9 +63,20 @@ const Ring = styled(motion.div)`
   opacity: 0.8;
   width: ${props => props.size}px;
   height: ${props => props.size}px;
+  animation: ${props => props.reverse ? 'rotateReverse' : 'rotate'} ${props => props.duration || 3}s linear infinite;
+  
+  @keyframes rotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  
+  @keyframes rotateReverse {
+    from { transform: translate(-50%, -50%) rotate(360deg); }
+    to { transform: translate(-50%, -50%) rotate(0deg); }
+  }
 `;
 
-const HudCircle = styled(motion.div)`
+const HudCircle = styled.div`
   position: absolute;
   border: 1px solid #00d4ff;
   border-radius: 50%;
@@ -65,16 +86,31 @@ const HudCircle = styled(motion.div)`
   left: ${props => props.left};
   right: ${props => props.right};
   bottom: ${props => props.bottom};
+  opacity: 0;
+  animation: hudAppear 0.5s ease-out ${props => props.delay || 0.5}s forwards;
+  
+  @keyframes hudAppear {
+    to {
+      opacity: 0.3;
+      transform: scale(1.1);
+    }
+  }
 `;
 
-const ScanLine = styled(motion.div)`
+const ScanLine = styled.div`
   position: absolute;
   width: 100%;
   height: 2px;
   background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+  animation: scan 2s linear infinite;
+  
+  @keyframes scan {
+    0% { top: -2px; }
+    100% { top: 100%; }
+  }
 `;
 
-const SystemText = styled(motion.h1)`
+const SystemText = styled.h1`
   position: absolute;
   bottom: 25%;
   font-family: 'Orbitron', monospace;
@@ -85,9 +121,15 @@ const SystemText = styled(motion.h1)`
   text-shadow: 0 0 20px #00d4ff;
   text-align: center;
   width: 100%;
+  animation: flicker 2s infinite;
+  
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
 `;
 
-const StatusText = styled(motion.p)`
+const StatusText = styled.p`
   position: absolute;
   bottom: 20%;
   font-family: 'Orbitron', monospace;
@@ -110,18 +152,45 @@ const LoadingBar = styled.div`
   overflow: hidden;
 `;
 
-const LoadingProgress = styled(motion.div)`
+const LoadingProgress = styled.div`
   height: 100%;
   background: linear-gradient(90deg, #00d4ff, #0099cc);
+  width: 0%;
+  animation: load 3s ease-out forwards;
+  
+  @keyframes load {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
 `;
 
-const DataStream = styled(motion.div)`
+const DataStream = styled.div`
   position: absolute;
   top: 0;
   width: 100px;
   height: 100%;
   background: linear-gradient(180deg, transparent, rgba(0, 212, 255, 0.1), transparent);
   opacity: 0.5;
+  
+  &.left {
+    left: 0;
+    animation: streamDown 3s linear infinite;
+  }
+  
+  &.right {
+    right: 0;
+    animation: streamUp 3s linear infinite;
+  }
+  
+  @keyframes streamDown {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  
+  @keyframes streamUp {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(-100%); }
+  }
 `;
 
 const JarvisLoader = ({ isComplete }) => {
@@ -152,92 +221,45 @@ const JarvisLoader = ({ isComplete }) => {
         >
           <JarvisUI>
             <ArcReactor>
-              <Core
-                animate={{
-                  boxShadow: [
-                    '0 0 60px #00d4ff, inset 0 0 20px #00d4ff',
-                    '0 0 80px #00d4ff, inset 0 0 30px #00d4ff',
-                    '0 0 60px #00d4ff, inset 0 0 20px #00d4ff',
-                  ],
-                }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
-              <Ring
-                size={100}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-              />
-              <Ring
-                size={140}
-                color="#0099cc"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-              />
-              <Ring
-                size={180}
-                color="#006699"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
-              />
+              <Core />
+              <Ring size={100} duration={3} />
+              <Ring size={140} color="#0099cc" reverse duration={4} />
+              <Ring size={180} color="#006699" duration={5} />
             </ArcReactor>
 
             <HudCircle
               size={300}
               top="10%"
               left="10%"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 0.3, scale: 1.1 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
+              delay="0.5s"
             />
             <HudCircle
               size={250}
               bottom="15%"
               right="15%"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 0.3, scale: 1.1 }}
-              transition={{ delay: 0.7, duration: 0.5 }}
+              delay="0.7s"
             />
             <HudCircle
               size={200}
               top="20%"
               right="10%"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 0.3, scale: 1.1 }}
-              transition={{ delay: 0.9, duration: 0.5 }}
+              delay="0.9s"
             />
 
-            <ScanLine
-              animate={{ top: ['-2px', '100%'] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-            />
+            <ScanLine />
 
-            <SystemText
-              animate={{ opacity: [1, 0.8, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
+            <SystemText>
               {statusText}
             </SystemText>
 
             <StatusText>{subText}</StatusText>
 
             <LoadingBar>
-              <LoadingProgress
-                initial={{ width: '0%' }}
-                animate={{ width: '100%' }}
-                transition={{ duration: 3, ease: 'easeOut' }}
-              />
+              <LoadingProgress />
             </LoadingBar>
 
-            <DataStream
-              style={{ left: 0 }}
-              animate={{ y: ['-100%', '100%'] }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-            />
-            <DataStream
-              style={{ right: 0 }}
-              animate={{ y: ['100%', '-100%'] }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-            />
+            <DataStream className="left" />
+            <DataStream className="right" />
           </JarvisUI>
         </LoaderContainer>
       )}
