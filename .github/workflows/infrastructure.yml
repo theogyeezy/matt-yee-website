@@ -1,0 +1,57 @@
+name: Infrastructure Management
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Action to perform'
+        required: true
+        default: 'deploy'
+        type: choice
+        options:
+        - deploy
+        - update
+        - delete
+
+jobs:
+  infrastructure:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+        
+    - name: Deploy CloudFormation Stack
+      if: github.event.inputs.action == 'deploy' || github.event.inputs.action == 'update'
+      run: |
+        echo "🚀 Deploying CloudFormation stack..."
+        aws cloudformation deploy \
+          --template-file aws/cloudformation.yaml \
+          --stack-name matt-yee-website \
+          --capabilities CAPABILITY_IAM \
+          --parameter-overrides \
+            DomainName=themattyee.com \
+            HostedZoneId=Z00037831YZW35S8B8BPP \
+          --no-fail-on-empty-changeset
+        
+        echo "📊 Getting stack outputs..."
+        aws cloudformation describe-stacks \
+          --stack-name matt-yee-website \
+          --query 'Stacks[0].Outputs' \
+          --output table
+          
+    - name: Delete CloudFormation Stack
+      if: github.event.inputs.action == 'delete'
+      run: |
+        echo "🗑️ Deleting CloudFormation stack..."
+        aws cloudformation delete-stack --stack-name matt-yee-website
+        echo "⏳ Waiting for stack deletion to complete..."
+        aws cloudformation wait stack-delete-complete --stack-name matt-yee-website
+        echo "✅ Stack deleted successfully"
