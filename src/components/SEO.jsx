@@ -2,9 +2,9 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 const SEO = ({ 
-  title = "Matt Yee - Engineer, Entrepreneur, Baseball Player, AI/ML Director", 
-  description = "Matt Yee: Director of AI/ML Innovation Solutions, former New York Mets bullpen catcher, professional baseball player with Cosmic Baseball Organization, startup entrepreneur from Austin, Texas.",
-  keywords = "Matt Yee, AI ML director, artificial intelligence consultant, New York Mets, bullpen catcher, Cosmic Baseball Organization, startup entrepreneur, Austin Texas, innovation solutions, professional baseball player",
+  title = "Matt Yee - AI/ML Director, Entrepreneur, Inventor", 
+  description = "Matt Yee: Engineer, Entrepreneur, Inventor, and Philanthropist. Director of AI/ML pushing the limits of applied research in agentic AI from Austin, Texas.",
+  keywords = "Matt Yee, AI ML director, artificial intelligence, machine learning, startup entrepreneur, inventor, Austin Texas, think tank, agentic AI, innovation leadership",
   url = "https://themattyee.com",
   image = "https://themattyee.com/og-image.jpg",
   type = "website",
@@ -14,33 +14,24 @@ const SEO = ({
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Matt Yee",
-    "jobTitle": "Director of AI/ML - Innovation Solutions", 
-    "description": "AI/ML Director, former professional baseball player (New York Mets bullpen catcher, Cosmic Baseball Organization), startup entrepreneur",
+    "jobTitle": "Director of AI/ML", 
+    "description": "Engineer, Entrepreneur, Inventor, and Philanthropist. Director of AI/ML pushing the limits of applied research in agentic AI.",
     "url": url,
     "sameAs": [
       url,
       "https://linkedin.com/in/mattyee", // Add your actual LinkedIn
       "https://twitter.com/mattyee" // Add your actual Twitter
     ],
-    "alumniOf": [
-      {
-        "@type": "Organization",
-        "name": "New York Mets",
-        "description": "Major League Baseball Organization - Bullpen Catcher"
-      },
-      {
-        "@type": "Organization", 
-        "name": "Cosmic Baseball Organization",
-        "description": "Professional Independent Baseball League - Inaugural Tour Participant"
-      }
-    ],
     "knowsAbout": [
       "Artificial Intelligence",
       "Machine Learning", 
       "Startup Strategy",
       "Innovation Leadership",
-      "Professional Baseball",
-      "Think Tank Operations"
+      "Think Tank Operations",
+      "Agentic AI",
+      "Technology Innovation",
+      "Executive Advisory",
+      "Engineering Leadership"
     ],
     "address": {
       "@type": "PostalAddress",

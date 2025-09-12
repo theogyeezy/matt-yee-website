@@ -33,16 +33,16 @@ const SinglePageAppCarbon = () => {
   return (
     <>
       <Helmet>
-        <title>Matt Yee - AI/ML Director, Startup Entrepreneur</title>
-        <meta name="description" content="Matt Yee: Director of AI/ML, startup entrepreneur from Austin, Texas." />
-        <meta name="keywords" content="Matt Yee, AI ML director, artificial intelligence, startup entrepreneur, Austin Texas, think tank, agentic AI" />
-        <meta property="og:title" content="Matt Yee - AI/ML Innovation Director" />
-        <meta property="og:description" content="AI/ML Innovation Director. Building technology that bends industries from Austin, Texas." />
+        <title>Matt Yee - AI/ML Director, Entrepreneur, Inventor</title>
+        <meta name="description" content="Matt Yee: Engineer, Entrepreneur, Inventor, and Philanthropist. Director of AI/ML pushing the limits of applied research in agentic AI from Austin, Texas." />
+        <meta name="keywords" content="Matt Yee, AI ML director, artificial intelligence, machine learning, startup entrepreneur, inventor, Austin Texas, think tank, agentic AI, innovation leadership" />
+        <meta property="og:title" content="Matt Yee - AI/ML Director & Inventor" />
+        <meta property="og:description" content="Engineer. Entrepreneur. Inventor. Philanthropist. Building technology that bends industries from Austin, Texas." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://themattyee.com" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Matt Yee - AI/ML Director" />
-        <meta name="twitter:description" content="AI/ML Innovation Director, startup entrepreneur from Austin, Texas." />
+        <meta name="twitter:title" content="Matt Yee - AI/ML Director & Inventor" />
+        <meta name="twitter:description" content="Engineer, Entrepreneur, Inventor. Director of AI/ML building breakthrough technology from Austin, Texas." />
         
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
@@ -54,7 +54,7 @@ const SinglePageAppCarbon = () => {
             "@type": "Person",
             "name": "Matt Yee",
             "jobTitle": "Director of AI/ML",
-            "description": "AI/ML Director, startup entrepreneur",
+            "description": "Engineer, Entrepreneur, Inventor, and Philanthropist. Director of AI/ML pushing the limits of applied research in agentic AI.",
             "url": "https://themattyee.com",
             "knowsAbout": [
               "Artificial Intelligence",
@@ -62,7 +62,10 @@ const SinglePageAppCarbon = () => {
               "Startup Strategy",
               "Innovation Leadership",
               "Think Tank Operations",
-              "Agentic AI"
+              "Agentic AI",
+              "Technology Innovation",
+              "Executive Advisory",
+              "Engineering Leadership"
             ],
             "address": {
               "@type": "PostalAddress",
