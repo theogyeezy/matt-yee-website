@@ -176,11 +176,11 @@ const HeroSection = ({ onSectionClick }) => {
         </Title>
         
         <Subtitle variants={itemVariants}>
-          Engineer. Entrepreneur. Athlete. Philanthropist. (Not Tony Stark)
+          Engineer. Entrepreneur. Inventor. Philanthropist. (Not Tony Stark)
         </Subtitle>
         
         <Description variants={itemVariants}>
-          Director of AI/ML Innovation Solutions, pushing the limits of applied research in agentic AI 
+          Director of AI/ML, pushing the limits of applied research in agentic AI 
           and machine learning. From Austin, Texas, building tech that bends industries and breaks barriers.
         </Description>
       </HeroContent>

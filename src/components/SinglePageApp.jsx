@@ -29,6 +29,25 @@ const ScrollContainer = styled.div`
   height: 100vh;
 `;
 
+const LastEdited = styled.div`
+  position: fixed;
+  top: 96px;
+  right: 20px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.8rem;
+  z-index: 100;
+  font-family: 'Orbitron', monospace;
+`;
+
+const Footer = styled.footer`
+  background: #0a0a0a;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+`;
+
 const SinglePageApp = () => {
   const [activeSection, setActiveSection] = useState('hero');
 
@@ -44,16 +63,16 @@ const SinglePageApp = () => {
   return (
     <>
       <Helmet>
-        <title>Matt Yee - AI/ML Director, Former NY Mets Bullpen Catcher, Startup Entrepreneur</title>
-        <meta name="description" content="Matt Yee: Director of AI/ML Innovation Solutions, former New York Mets bullpen catcher, professional baseball player with Cosmic Baseball Organization, startup entrepreneur from Austin, Texas." />
-        <meta name="keywords" content="Matt Yee, AI ML director, artificial intelligence, New York Mets, bullpen catcher, Cosmic Baseball Organization, professional baseball player, startup entrepreneur, Austin Texas, innovation solutions, think tank, agentic AI" />
-        <meta property="og:title" content="Matt Yee - AI/ML Innovation Director & Former Pro Baseball Player" />
-        <meta property="og:description" content="From NY Mets bullpen catcher to AI/ML Innovation Director. Building technology that bends industries from Austin, Texas." />
+        <title>Matt Yee - AI/ML Director, Startup Entrepreneur</title>
+        <meta name="description" content="Matt Yee: Director of AI/ML, startup entrepreneur from Austin, Texas." />
+        <meta name="keywords" content="Matt Yee, AI ML director, artificial intelligence, startup entrepreneur, Austin Texas, think tank, agentic AI" />
+        <meta property="og:title" content="Matt Yee - AI/ML Innovation Director" />
+        <meta property="og:description" content="AI/ML Innovation Director. Building technology that bends industries from Austin, Texas." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://themattyee.com" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Matt Yee - AI/ML Director & Former NY Mets Bullpen Catcher" />
-        <meta name="twitter:description" content="AI/ML Innovation Director, former professional baseball player, startup entrepreneur from Austin, Texas." />
+        <meta name="twitter:title" content="Matt Yee - AI/ML Director" />
+        <meta name="twitter:description" content="AI/ML Innovation Director, startup entrepreneur from Austin, Texas." />
         
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
@@ -64,27 +83,14 @@ const SinglePageApp = () => {
             "@context": "https://schema.org",
             "@type": "Person",
             "name": "Matt Yee",
-            "jobTitle": "Director of AI/ML - Innovation Solutions",
-            "description": "AI/ML Director, former New York Mets bullpen catcher, professional baseball player with Cosmic Baseball Organization, startup entrepreneur",
+            "jobTitle": "Director of AI/ML",
+            "description": "AI/ML Director, startup entrepreneur",
             "url": "https://themattyee.com",
-            "alumniOf": [
-              {
-                "@type": "Organization",
-                "name": "New York Mets",
-                "description": "Major League Baseball Organization"
-              },
-              {
-                "@type": "Organization", 
-                "name": "Cosmic Baseball Organization",
-                "description": "Professional Independent Baseball League"
-              }
-            ],
             "knowsAbout": [
               "Artificial Intelligence",
               "Machine Learning", 
               "Startup Strategy",
               "Innovation Leadership",
-              "Professional Baseball",
               "Think Tank Operations",
               "Agentic AI"
             ],
@@ -99,6 +105,7 @@ const SinglePageApp = () => {
       </Helmet>
 
       <AppContainer>
+        <LastEdited>Last edited: October 5, 2023</LastEdited>
         <Navigation onSectionClick={scrollToSection} />
         
         <ScrollContainer>
@@ -121,6 +128,10 @@ const SinglePageApp = () => {
           <Section id="contact">
             <ContactSection />
           </Section>
+          
+          <Footer>
+            © 2023 Matt Yee. All rights reserved.
+          </Footer>
         </ScrollContainer>
       </AppContainer>
     </>

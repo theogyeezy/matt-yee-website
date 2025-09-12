@@ -144,7 +144,6 @@ const ConsultingSection = ({ onSectionClick }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <ServiceIcon>🧠</ServiceIcon>
             <ServiceTitle>AI/ML Strategy & Implementation</ServiceTitle>
             <ServiceDescription>
               Transform your business with custom AI/ML solutions that actually deliver ROI. 
@@ -159,7 +158,6 @@ const ConsultingSection = ({ onSectionClick }) => {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
           >
-            <ServiceIcon>🚀</ServiceIcon>
             <ServiceTitle>Startup Strategy & Scaling</ServiceTitle>
             <ServiceDescription>
               Navigate the startup journey with battle-tested strategies for building, 
@@ -174,7 +172,6 @@ const ConsultingSection = ({ onSectionClick }) => {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <ServiceIcon>💡</ServiceIcon>
             <ServiceTitle>Innovation Leadership</ServiceTitle>
             <ServiceDescription>
               Build internal innovation capabilities that consistently turn bold ideas 
@@ -189,7 +186,6 @@ const ConsultingSection = ({ onSectionClick }) => {
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
           >
-            <ServiceIcon>🎯</ServiceIcon>
             <ServiceTitle>Executive Advisory</ServiceTitle>
             <ServiceDescription>
               Strategic guidance for executives navigating digital transformation, 

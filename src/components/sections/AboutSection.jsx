@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaBrain, FaLightbulb, FaBaseballBall, FaBullseye } from 'react-icons/fa';
+import { FaBrain, FaLightbulb, FaRocket, FaBullseye } from 'react-icons/fa';
 
 const AboutContainer = styled.div`
   min-height: 100vh;
@@ -176,7 +176,7 @@ const AboutSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Not quite Tony Stark — but close enough to keep things interesting.
+          Not quite Tony Stark, but close enough to keep things interesting.
         </IntroText>
 
         <StoryText
@@ -186,25 +186,23 @@ const AboutSection = () => {
           viewport={{ once: true }}
         >
           <motion.p variants={itemVariants}>
-            I'm <strong>Matt Yee</strong>: Engineer. Entrepreneur. Athlete. Philanthropist(ish).
+            I'm <strong>Matt Yee</strong>: Engineer. Entrepreneur. Philanthropist(ish).
           </motion.p>
           
           <motion.p variants={itemVariants}>
-            I run an AI/ML org that works like a think tank — where bold ideas don't just sit on whiteboards, 
+            I run an AI/ML org that works like a think tank where bold ideas don't just sit on whiteboards, 
             they turn into real tools. From Austin, Texas, I'm pushing the limits of applied research in agentic AI 
             and machine learning, building tech that bends industries, breaks barriers, and lets me channel my 
-            inner Tony Stark (minus the billionaire status). By night (and often weekends), I'm still 
-            chasing baseballs, building startups, and dreaming up the next big thing. Somewhere in between, I find 
+            inner Tony Stark (minus the billionaire status). By night (and often weekends), I'm 
+            building startups and dreaming up the next big thing. Somewhere in between, I find 
             time to give back, whether it's through mentoring, supporting causes close to me, or fueling friends with BBQ.
           </motion.p>
 
           <HighlightBox variants={itemVariants}>
             <p>
-              My journey has taken me from professional baseball fields — including serving as a <strong>bullpen catcher 
-              for the New York Mets Organization</strong> and playing professional independent ball with the <strong>Cosmic Baseball 
-              Organization's inaugural tour</strong> — to leading-edge innovation labs, with a few startups and wild 
+              My journey has taken me from aerospace engineering to leading-edge innovation labs, with a few startups and wild 
               adventures along the way (yes, Everest is on the list). I've learned to thrive at the intersection of technology 
-              and sports — blending the precision of engineering with the discipline and fearlessness of a ballplayer.
+              and innovation, blending the precision of engineering with entrepreneurial fearlessness.
             </p>
           </HighlightBox>
 
@@ -248,10 +246,10 @@ const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <SkillIcon><FaBaseballBall /></SkillIcon>
-            <SkillTitle>Athletic Discipline</SkillTitle>
+            <SkillIcon><FaRocket /></SkillIcon>
+            <SkillTitle>Innovation Strategy</SkillTitle>
             <SkillDescription>
-              Bringing the focus and teamwork of professional sports to tech
+              Transforming bold ideas into breakthrough technologies
             </SkillDescription>
           </SkillCard>
 
@@ -286,8 +284,8 @@ const AboutSection = () => {
           >
             <TimelineYear>Present</TimelineYear>
             <TimelineContent>
-              <h3>Director of AI/ML – Innovation Solutions</h3>
-              <p>I lead an AI/ML org that runs like a think tank — where bold ideas don't just live on whiteboards, 
+              <h3>Director of AI/ML</h3>
+              <p>I lead an AI/ML org that runs like a think tank where bold ideas don't just live on whiteboards, 
               they become real tools. From Austin, Texas, I'm pushing the limits of applied research in agentic AI 
               and machine learning, building tech that bends industries, breaks barriers, and lets me channel my 
               inner Tony Stark (minus the billionaire status).</p>
@@ -320,22 +318,6 @@ const AboutSection = () => {
             </TimelineContent>
           </TimelineItem>
 
-          <TimelineItem
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-          >
-            <TimelineYear>Past</TimelineYear>
-            <TimelineContent>
-              <h3>Professional Baseball Career</h3>
-              <p><strong>New York Mets Organization | Bullpen Catcher</strong></p>
-              <p>Worked directly with MLB & MILB pitchers and coaching staff during bullpen sessions and game preparation. Got introduced to baseball analytics, allowing me to infuse my two passions.</p>
-              
-              <p><strong>Cosmic Baseball Organization | Professional Baseball Player</strong></p>
-              <p>Professional independent league player, participated in their inaugural tour. Learned discipline, teamwork, and high-pressure performance while collaborating closely with players and staff at all levels of professional baseball.</p>
-            </TimelineContent>
-          </TimelineItem>
 
           <TimelineItem
             initial={{ opacity: 0, x: -20 }}
