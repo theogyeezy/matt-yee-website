@@ -1,0 +1,40 @@
+// Carbon Design System imports
+@use '@carbon/react' with (
+  $css--default-type: true,
+  $css--reset: true
+);
+
+// Custom overrides for Matt Yee website
+.cds--header {
+  background-color: #161616;
+  border-bottom: 1px solid #393939;
+}
+
+.cds--content {
+  background-color: #161616;
+  min-height: 100vh;
+}
+
+// Typography overrides
+.hero-title {
+  font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 600;
+}
+
+// Custom gradient for accent elements
+.gradient-text {
+  background: linear-gradient(135deg, #0f62fe 0%, #8a3ffc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+// Tile hover effects
+.cds--tile:hover {
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
+}
+
+// Custom section spacing
+.section-spacing {
+  padding: 4rem 0;
+}

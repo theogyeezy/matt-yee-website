@@ -6,6 +6,7 @@ import SinglePageApp from './components/SinglePageApp';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Admin from './pages/Admin';
+import './styles/carbon-override.scss';
 
 function AppContent() {
   const [loading, setLoading] = useState(true);
